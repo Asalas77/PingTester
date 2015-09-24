@@ -44,6 +44,7 @@ public class GuiController implements Initializable {
 	AnchorPane anchorPane;
 	@FXML ProgressBar progressBar;
 
+	XYChart.Series<Number, Number> series = new Series<>();
 	ScheduledService<Number> scheduler;
 	ObservableList<Data<Number, Number>> data;
 	public static int totalCount = 0;
@@ -158,7 +159,7 @@ public class GuiController implements Initializable {
 		}
 		@Override
 		protected XYChart.Series<Number, Number> call() throws Exception {
-			XYChart.Series<Number, Number> series = new Series<>();
+			series.getData().clear();
 			for (int i = 0; i < n; i++) {
 				series.getData().add(new XYChart.Data<Number, Number>(totalCount++, 0));
 				updateProgress(i,n);
